@@ -1,0 +1,29 @@
+name: Cloudflare-preview
+
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Publish to Cloudflare Pages
+        id: cloudflare_deploy
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: docs-autonity-org
+          directory: ./public
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add PR comment with preview URL
+        uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            🚀 This branch can be previewed at ${{ steps.cloudflare_deploy.outputs.url }}
+
