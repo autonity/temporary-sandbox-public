@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+    <link rel="preload" href="../../../../_theme/fonts/berkeley/BerkeleyMono-Regular.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="../../../../_theme/fonts/berkeley/BerkeleyMono-Bold.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="../../../../_theme/fonts/berkeley/BerkeleyMono-Italic.woff2" as="font" type="font/woff2" crossorigin="">
+    
+
+    <link rel="preload" href="../../../../_theme/fonts/berkeley/BerkeleyMono-Regular.woff" as="font" type="font/woff" crossorigin="">
+    <link rel="preload" href="../../../../_theme/fonts/berkeley/BerkeleyMono-Bold.woff" as="font" type="font/woff" crossorigin="">
+    <link rel="preload" href="../../../../_theme/fonts/berkeley/BerkeleyMono-Italic.woff" as="font" type="font/woff" crossorigin="">
+
+
+    <link rel="preload" href="../../../../_theme/fonts/noto/NotoSans-Regular.ttf" as="font" type="font/ttf" crossorigin="">
+    <link rel="preload" href="../../../../_theme/fonts/noto/NotoSans-Bold.ttf" as="font" type="font/ttf" crossorigin="">
+    <link rel="preload" href="../../../../_theme/fonts/noto/NotoSans-Italic.ttf" as="font" type="font/ttf" crossorigin="">    
+
+    <meta charset="utf-8">
+    <meta name="generator" content="quarto-1.5.56">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <meta name="description" content="Stabilization Contract functions">
+
+    <title>Stabilization Contract Interface – Autonity Documentation</title>    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css" integrity="sha512-SgaqKKxJDQ/tAUAAXzvxZz33rmn7leYDYfBP+YoMRSENhf3zJyx3SBASt/OfeQwBHA1nxMis7mM3EV/oYT6Fdw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        code{white-space: pre-wrap;}
+        span.smallcaps{font-variant: small-caps;}
+        div.columns{display: flex; gap: min(4vw, 1.5em);}
+        div.column{flex: auto; overflow-x: auto;}
+        div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+        ul.task-list{list-style: none;}
+        ul.task-list li input[type="checkbox"] {
+          width: 0.8em;
+          margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+          vertical-align: middle;
+        }
+    </style>
+    
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../_assets/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+        <script id="quarto-search-options" type="application/json">{
+          "location": "navbar",
+          "copy-button": false,
+          "collapse-after": 3,
+          "panel-placement": "end",
+          "type": "overlay",
+          "limit": 50,
+          "keyboard-shortcut": [
+            "f",
+            "/",
+            "s"
+          ],
+          "language": {
+            "search-no-results-text": "No results",
+            "search-matching-documents-text": "matching documents",
+            "search-copy-link-title": "Copy link to search",
+            "search-hide-matches-text": "Hide additional matches",
+            "search-more-match-text": "more match in this document",
+            "search-more-matches-text": "more matches in this document",
+            "search-clear-button-title": "Clear",
+            "search-text-placeholder": "",
+            "search-detached-cancel-button-title": "Cancel",
+            "search-submit-button-title": "Submit",
+            "search-label": "Search"
+          }
+        }</script>
+        <style>html{ scroll-behavior: smooth; }</style>
+        <link rel="preconnect" href="https://plausible.io">
+        <script defer="" data-domain="docs.autonity.org" src="https://plausible.io/js/plausible.js"></script>
+        <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+    
+            <link rel="stylesheet" href="../../../../_assets/css/styles.css">
+    </head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+        <div id="quarto-search-results"></div>
+          <header id="quarto-header" class="headroom fixed-top">
+            <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+              <div class="navbar-container container-fluid">
+              <div class="navbar-brand-container mx-auto">
+            <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+            <img src="../../../../_assets/images/logo-autonity.svg" alt="" class="navbar-logo">
+            </a>
+            <a class="navbar-brand" href="../../../../index.html">
+            <span class="navbar-title">Autonity Documentation</span>
+            </a>
+          </div>
+                <div class="quarto-navbar-tools tools-end">
+        </div>
+                  <div id="quarto-search" class="" title="Search"></div>
+              </div> <!-- /container-fluid -->
+            </nav>
+          <nav class="quarto-secondary-nav">
+            <div class="container-fluid d-flex">
+              <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+                <i class="bi bi-layout-text-sidebar-reverse"></i>
+              </button>
+                <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../reference/cli/index.html">Reference</a></li><li class="breadcrumb-item"><a href="../../../../reference/api/index.html">Autonity Interfaces</a></li><li class="breadcrumb-item"><a href="../../../../reference/api/asm/index.html">ASM Contract Interface</a></li><li class="breadcrumb-item"><a href="../../../../reference/api/asm/stabilization/index.html">Stabilization Contract Interface</a></li></ol></nav>
+                <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+                </a>
+            </div>
+          </nav>
+        </header>
+        <!-- content -->
+        <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+        <!-- sidebar -->
+          <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+            <div class="sidebar-menu-container"> 
+            <ul class="list-unstyled mt-1">
+                <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Getting started</span></a>
+          </div>
+        </li>
+                <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../overview/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Overview</span></a>
+          </div>
+        </li>
+                <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+         <span class="menu-text">Concepts</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/architecture/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Architecture</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/system-model/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">System model</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a href="../../../../concepts/consensus/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Consensus</span></a>
+                  <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/consensus/committee/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Consensus Committee</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/consensus/pos/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Tendermint BFT consensus</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/client/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Autonity Go Client (AGC)</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/oracle-network/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Oracle network</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/oracle-server/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Autonity Oracle Server (AOS)</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/validator/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Validator</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/staking/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Staking</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/accountability/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Accountability and fault detection (AFD)</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/asm/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Auton Stabilization Mechanism (ASM)</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a href="../../../../concepts/protocol-assets/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Protocol assets</span></a>
+                  <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/protocol-assets/newton/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Newton</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/protocol-assets/auton/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Auton</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../concepts/protocol-assets/liquid-newton/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Liquid Newton</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+              </ul>
+          </li>
+                <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+         <span class="menu-text">Networks</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../networks/testnet-bakerloo/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Bakerloo Testnet</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../networks/testnet-piccadilly/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Piccadilly Testnet</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+         <span class="menu-text">Accounts</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../account-holders/setup-aut/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Setup the Autonity Utility Tool (aut)</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../account-holders/create-acct/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Create an account</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../account-holders/fund-acct/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Fund an account</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../account-holders/submit-trans-aut/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Submit a transaction from the Autonity Utility tool (aut)</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+         <span class="menu-text">Running a Node</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../node-operators/install-aut/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Install Autonity in your environment</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../node-operators/run-aut/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Run Autonity</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../node-operators/connect/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Connecting to your Node</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../node-operators/setup-node-monitoring/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Set up node monitoring</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../node-operators/migrate-aut/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Migrate Autonity</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+         <span class="menu-text">Running an Oracle Server</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../oracle/install-oracle/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Install Autonity Oracle Server in your environment</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../oracle/run-oracle/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Run Autonity Oracle Server</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+         <span class="menu-text">Running a Validator</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../validators/register-vali/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Register as a Validator</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../validators/pause-vali/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Pause and reactivate a Validator</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../validators/change-commission-rate/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Change Validator Commission Rate</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../validators/migrate-vali/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Migrate Validator</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+         <span class="menu-text">Staking</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../delegators/bond-stake/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Bond and unbond stake</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../delegators/claim-rewards/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Claim Staking Rewards</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../delegators/transfer-lntn/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Transfer Liquid Newton</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+         <span class="menu-text">Borrowing by CDP in the ASM</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../cdp/open-cdp/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Open and manage a CDP</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../cdp/liquidate-cdp/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Liquidate a CDP</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+         <span class="menu-text">Development</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../developer/submit-trans-gov-acct/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Submit a governance transaction from Autonity Utility Tool (aut)</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../developer/deploy-brownie/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Deploy smart contracts to an Autonity network with Brownie</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../developer/custom-networks/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Setting up custom networks</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+         <span class="menu-text">Reference</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+                  <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a href="../../../../reference/cli/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Autonity Command-line</span></a>
+                  <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 ">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/cli/oracle/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Autonity Oracle Server Command-line</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/cli/agc/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Autonity Go Client Command-line</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                  <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a href="../../../../reference/api/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Autonity Interfaces</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth2 show">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/api/oracle/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Oracle Contract Interface</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/api/web3/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Web3 Namespace</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/api/accountability/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Accountability Contract Interface</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/api/liquid-newton/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Liquid Newton Contract Interface</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a href="../../../../reference/api/aut/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Autonity Contract Interface</span></a>
+                  <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 ">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/api/aut/op-prot/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Governance and Protocol Only Reference</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                  <li class="sidebar-item sidebar-item-section">
+              <div class="sidebar-item-container"> 
+                    <a href="../../../../reference/api/asm/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">ASM Contract Interface</span></a>
+                  <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="true" aria-label="Toggle section">
+                    <i class="bi bi-chevron-right ms-2"></i>
+                  </a> 
+              </div>
+              <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth3 show">  
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/api/asm/acu/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">ACU Contract Interface</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/api/asm/stabilization/index.html" class="sidebar-item-text sidebar-link active">
+         <span class="menu-text">Stabilization Contract Interface</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/api/asm/supplycontrol/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Supply Control Contract Interface</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+              </ul>
+          </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/codebase/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Codebase</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/genesis/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Genesis</span></a>
+          </div>
+        </li>
+                  <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../reference/protocol/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Protocol Parameters</span></a>
+          </div>
+        </li>
+              </ul>
+          </li>
+                <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../glossary/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Glossary</span></a>
+          </div>
+        </li>
+                <li class="sidebar-item">
+          <div class="sidebar-item-container"> 
+          <a href="../../../../issues/index.html" class="sidebar-item-text sidebar-link">
+         <span class="menu-text">Known issues</span></a>
+          </div>
+        </li>
+            </ul>
+            </div>
+        </nav>
+        <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+        <!-- margin-sidebar -->
+            <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+                <nav id="TOC" role="doc-toc" class="toc-active">
+            <h2 id="toc-title">On this page</h2>
+           
+          <ul>
+          <li><a href="#cdp-owner" id="toc-cdp-owner" class="nav-link active" data-scroll-target="#cdp-owner">CDP Owner</a>
+          <ul class="collapse">
+          <li><a href="#deposit" id="toc-deposit" class="nav-link" data-scroll-target="#deposit">deposit</a></li>
+          <li><a href="#withdraw" id="toc-withdraw" class="nav-link" data-scroll-target="#withdraw">withdraw</a></li>
+          <li><a href="#borrow" id="toc-borrow" class="nav-link" data-scroll-target="#borrow">borrow</a></li>
+          <li><a href="#repay" id="toc-repay" class="nav-link" data-scroll-target="#repay">repay</a></li>
+          </ul></li>
+          <li><a href="#cdp-liquidator" id="toc-cdp-liquidator" class="nav-link" data-scroll-target="#cdp-liquidator">CDP Liquidator</a>
+          <ul class="collapse">
+          <li><a href="#isliquidatable" id="toc-isliquidatable" class="nav-link" data-scroll-target="#isliquidatable">isLiquidatable</a></li>
+          <li><a href="#liquidate" id="toc-liquidate" class="nav-link" data-scroll-target="#liquidate">liquidate</a></li>
+          </ul></li>
+          <li><a href="#cdp-view-functions" id="toc-cdp-view-functions" class="nav-link" data-scroll-target="#cdp-view-functions">CDP View functions</a>
+          <ul class="collapse">
+          <li><a href="#accounts" id="toc-accounts" class="nav-link" data-scroll-target="#accounts">accounts</a></li>
+          <li><a href="#borrowlimit" id="toc-borrowlimit" class="nav-link" data-scroll-target="#borrowlimit">borrowLimit</a></li>
+          <li><a href="#collateralprice" id="toc-collateralprice" class="nav-link" data-scroll-target="#collateralprice">collateralPrice</a></li>
+          <li><a href="#debtamount" id="toc-debtamount" class="nav-link" data-scroll-target="#debtamount">debtAmount</a></li>
+          <li><a href="#interestdue" id="toc-interestdue" class="nav-link" data-scroll-target="#interestdue">interestDue</a></li>
+          <li><a href="#minimumcollateral" id="toc-minimumcollateral" class="nav-link" data-scroll-target="#minimumcollateral">minimumCollateral</a></li>
+          <li><a href="#undercollateralized" id="toc-undercollateralized" class="nav-link" data-scroll-target="#undercollateralized">underCollateralized</a></li>
+          </ul></li>
+          </ul>
+        </nav>
+            </div>
+        <!-- main -->
+        <main class="content" id="quarto-document-content">
+    
+        <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../reference/cli/index.html">Reference</a></li><li class="breadcrumb-item"><a href="../../../../reference/api/index.html">Autonity Interfaces</a></li><li class="breadcrumb-item"><a href="../../../../reference/api/asm/index.html">ASM Contract Interface</a></li><li class="breadcrumb-item"><a href="../../../../reference/api/asm/stabilization/index.html">Stabilization Contract Interface</a></li></ol></nav>
+        <div class="quarto-title">
+        <h1 class="title">Stabilization Contract Interface</h1>
+        </div>
+
+        <div>
+          <div class="description">
+            <p>Stabilization Contract functions</p>
+          </div>
+        </div>
+
+
+        <div class="quarto-title-meta">
+
+            
+          
+            
+          </div>
+          
+
+
+        </header>    
+            
+    <p>Interfaces for interacting with the ASM Stabilization Contract functions using:</p>
+    <ul>
+    <li>The <code>aut</code> command-line RPC client to submit calls to inspect state and state-affecting transactions.</li>
+    </ul>
+    <div class="callout callout-style-default callout-note callout-titled" title="Protocol contract calls">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Protocol contract calls
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>Examples for calling functions from <code>aut</code> use the setup described in the How to <a href="../../../../account-holders/submit-trans-aut/">Submit a transaction from Autonity Utility Tool (aut)</a>.</p>
+    <p>Usage and Examples illustrate using the Stabilization Contract’s generated ABI and the <code>aut</code> tool’s <code>contract</code> command to call the Stabilization Contract address <code>0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f</code>. See <code>aut contract call --help</code>.</p>
+    <p>Usage and Examples assume the path to the ABI file has been set in <code>aut</code>’s configuration file <code>.autrc</code>. The <code>Stabilization.abi</code> file is generated when building the client from source and can be found in your <code>autonity</code> installation directory at <code>./params/generated/Stabilization.abi</code>. Alternatively, you can generate the ABI using the <code>abigen</code> <code>cmd</code> utility if you built from source (See <a href="../../../../node-operators/install-aut/#install-source">Install Autonity, Build from source code</a>).</p>
+    </div>
+    </div>
+    </div>
+    <section id="cdp-owner" class="level2">
+    <h2 class="anchored" data-anchor-id="cdp-owner">CDP Owner</h2>
+    <section id="deposit" class="level3">
+    <h3 class="anchored" data-anchor-id="deposit">deposit</h3>
+    <p>Deposit Collateral Token to a CDP using the ERC20 allowance mechanism.</p>
+    <p>Before calling this function, the CDP owner must approve the Stabilization contract to spend Collateral Token on their behalf for the full amount to be deposited.</p>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>You can approve the Stabilization Contract as a spender of Newton Collateral Token using the <code>aut</code> command <code>aut token approve [OPTIONS] SPENDER AMOUNT</code>.</p>
+    </div>
+    </div>
+    </div>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>the <code>amount</code> deposited is a non-zero amount</li>
+    <li>the <code>amount</code> deposited is <code>&lt;</code> the <code>allowance</code> amount that the CDP owner has approved the CDP contract to transfer.</li>
+    </ul>
+    <p>The CDP’s collateral balance is then incremented by the deposited amount.</p>
+    <section id="parameters" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters">Parameters</h4>
+    <table class="caption-top table">
+    <colgroup>
+    <col style="width: 33%">
+    <col style="width: 33%">
+    <col style="width: 33%">
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>amount</code></td>
+    <td><code>uint256</code></td>
+    <td>Units of Collateral Token to deposit (non-zero)</td>
+    </tr>
+    </tbody>
+    </table>
+    </section>
+    <section id="response" class="level4">
+    <h4 class="anchored" data-anchor-id="response">Response</h4>
+    <p>None.</p>
+    </section>
+    <section id="event" class="level4">
+    <h4 class="anchored" data-anchor-id="event">Event</h4>
+    <p>On a successful call the function emits a <code>Deposit</code> event, logging: <code>msg.sender</code>, <code>amount</code>.</p>
+    </section>
+    <section id="usage" class="level4">
+    <h4 class="anchored" data-anchor-id="usage">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+    <pre class="aut"><code>aut contract tx --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f deposit amount</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example" class="level4">
+    <h4 class="anchored" data-anchor-id="example">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+    <pre class="aut"><code>aut contract tx --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f --abi Stabilization.abi deposit 1000000000000000000 | aut tx sign - | aut tx send -</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    <section id="withdraw" class="level3">
+    <h3 class="anchored" data-anchor-id="withdraw">withdraw</h3>
+    <p>Request a withdrawal of Collateral Token from a CDP.</p>
+    <p>On method execution, state is inspected to retrieve:</p>
+    <ul>
+    <li>the CDP principal, collateral, and debt amounts</li>
+    <li>the minimum collateralization and liquidation ratios from the Stabilization Contract config</li>
+    <li>the current Collateral Token price.</li>
+    </ul>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>invalid amount: the <code>amount</code> withdrawn is <code>&lt;</code> the CDP’s collateral amount</li>
+    <li>insufficient collateral: the withdrawn <code>amount</code> must not reduce the remaining Collateral Token amount below the minimum collateral ratio.</li>
+    <li>liquidatable: withdrawal does not make the CDP liquidatable. The withdrawn amount value must not reduce the CDP to an under collateralized state below the liquidation ratio.</li>
+    </ul>
+    <p>The CDP’s collateral balance is then decremented by the withdrawn amount and Collateral Token is transferred to the CDP owner.</p>
+    <section id="parameters-1" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-1">Parameters</h4>
+    <table class="caption-top table">
+    <colgroup>
+    <col style="width: 33%">
+    <col style="width: 33%">
+    <col style="width: 33%">
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>amount</code></td>
+    <td><code>uint256</code></td>
+    <td>Units of Collateral Token to withdraw (non-zero)</td>
+    </tr>
+    </tbody>
+    </table>
+    </section>
+    <section id="response-1" class="level4">
+    <h4 class="anchored" data-anchor-id="response-1">Response</h4>
+    <p>None.</p>
+    </section>
+    <section id="event-1" class="level4">
+    <h4 class="anchored" data-anchor-id="event-1">Event</h4>
+    <p>On a successful call the function emits a <code>Withdraw</code> event, logging: <code>msg.sender</code>, <code>amount</code>.</p>
+    </section>
+    <section id="usage-1" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-1">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+    <pre class="aut"><code>aut contract tx --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f withdraw amount</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-1" class="level4">
+    <h4 class="anchored" data-anchor-id="example-1">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+    <pre class="aut"><code>aut contract tx --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f withdraw 1000000000000000000 | aut tx sign - | aut tx send -</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    <section id="borrow" class="level3">
+    <h3 class="anchored" data-anchor-id="borrow">borrow</h3>
+    <p>Borrow Auton against CDP Collateral.</p>
+    <p>On method execution, state is inspected to retrieve:</p>
+    <ul>
+    <li>the current CDP borrow limit, and debt and accrued interest amounts</li>
+    <li>the minimum collateralization and liquidation ratios, and the minimum debt requirement from the Stabilization Contract config</li>
+    <li>the current Collateral Token price.</li>
+    </ul>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>invalid debt position: the <code>debt</code> after borrowing must satisfy the minimum debt requirement.</li>
+    <li>liquidatable: borrowing does not make the CDP liquidatable. The <code>debt</code> after borrowing amount value must not reduce the CDP to an under collateralized state below the liquidation ratio.</li>
+    <li>insufficient collateral: the borrowed <code>amount</code> must not exceed the borrow <code>limit</code> for the CDP. The <code>debt</code> after borrowing must not reduce the CDP to an under collateralized state below the minimum collateral ratio.</li>
+    </ul>
+    <p>The CDP’s debt is then incremented by the borrowed amount and Auton is minted to the CDP owner.</p>
+    <section id="parameters-2" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-2">Parameters</h4>
+    <table class="caption-top table">
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>amount</code></td>
+    <td><code>uint256</code></td>
+    <td>Amount of Auton to borrow (non-zero)</td>
+    </tr>
+    </tbody>
+    </table>
+    </section>
+    <section id="response-2" class="level4">
+    <h4 class="anchored" data-anchor-id="response-2">Response</h4>
+    <p>None.</p>
+    </section>
+    <section id="event-2" class="level4">
+    <h4 class="anchored" data-anchor-id="event-2">Event</h4>
+    <p>On a successful call the function emits a <code>Borrow</code> event, logging: <code>msg.sender</code>, <code>amount</code>.</p>
+    </section>
+    <section id="usage-2" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-2">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+    <pre class="aut"><code>aut contract tx --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f borrow amount</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-2" class="level4">
+    <h4 class="anchored" data-anchor-id="example-2">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+    <pre class="aut"><code>aut contract tx --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f borrow 1000000000000000000 | aut tx sign - | aut tx send -</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    <section id="repay" class="level3">
+    <h3 class="anchored" data-anchor-id="repay">repay</h3>
+    <p>Make a payment towards a CDP debt. The transaction value is the payment amount.</p>
+    <p>On method execution, state is inspected to retrieve:</p>
+    <ul>
+    <li>the current CDP principal amount, and debt and accrued interest amounts</li>
+    <li>the minimum collateralization and liquidation ratios, and the minimum debt requirement from the Stabilization Contract config</li>
+    <li>the current Collateral Token price.</li>
+    </ul>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>no debt position: there is a debt; the CDP <code>principal</code> is <code>&gt; 0</code>.</li>
+    <li>invalid debt position: the debt after payment must satisfy the minimum debt requirement. The payment amount is <code>&lt;</code> the <code>debt</code> and the <code>debt</code> after the payment amount satisfies the minimum debt requirement.</li>
+    </ul>
+    <p>The payment is allocated to first cover outstanding interest debt on the CDP, and then repay CDP principal debt. If there is a surplus after principal repayment, then the surplus is returned to the CDP Owner.</p>
+    <section id="parameters-3" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-3">Parameters</h4>
+    <table class="caption-top table">
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>msg.value</code></td>
+    <td><code>uint256</code></td>
+    <td>The payment amount</td>
+    </tr>
+    </tbody>
+    </table>
+    </section>
+    <section id="response-3" class="level4">
+    <h4 class="anchored" data-anchor-id="response-3">Response</h4>
+    <p>None.</p>
+    </section>
+    <section id="event-3" class="level4">
+    <h4 class="anchored" data-anchor-id="event-3">Event</h4>
+    <p>On a successful call the function emits a <code>Repay</code> event, logging: <code>msg.sender</code>, <code>msg.value</code>.</p>
+    </section>
+    <section id="usage-3" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-3">Usage</h4>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>Use the <code>aut tx</code> command, specifying the Stabilization Contract address as the <code>RECIPIENT</code> address.</p>
+    </div>
+    </div>
+    </div>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+    <pre class="aut"><code>aut contract tx --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f --value amount repay</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-3" class="level4">
+    <h4 class="anchored" data-anchor-id="example-3">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+    <pre class="aut"><code>aut contract tx --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f --value 1 repay | aut tx sign - | aut tx send -</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    </section>
+    <section id="cdp-liquidator" class="level2">
+    <h2 class="anchored" data-anchor-id="cdp-liquidator">CDP Liquidator</h2>
+    <section id="isliquidatable" class="level3">
+    <h3 class="anchored" data-anchor-id="isliquidatable">isLiquidatable</h3>
+    <p>Determines if a CDP is liquidatable at the block height of the call.</p>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>good time: the block <code>timestamp</code> at the time of the call must be equal to or later than the CDP’s <code>timestamp</code> attribute, i.e.&nbsp;the time of the CDP’s last borrow or repayment (ensuring current and future liquidability is tested).</li>
+    </ul>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>The function tests liquidatibility by calling <a href="../../../../reference/api/asm/stabilization/#undercollateralized"><code>underCollateralized()</code></a>.</p>
+    </div>
+    </div>
+    </div>
+    <section id="parameters-4" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-4">Parameters</h4>
+    <table class="caption-top table">
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>account</code></td>
+    <td><code>address</code></td>
+    <td>The CDP account address</td>
+    </tr>
+    </tbody>
+    </table>
+    </section>
+    <section id="response-4" class="level4">
+    <h4 class="anchored" data-anchor-id="response-4">Response</h4>
+    <p>The function returns a <code>Boolean</code> flag indicating if the CDP is liquidatable (<code>True</code>) or not (<code>False</code>).</p>
+    </section>
+    <section id="event-4" class="level4">
+    <h4 class="anchored" data-anchor-id="event-4">Event</h4>
+    <p>None.</p>
+    </section>
+    <section id="usage-4" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-4">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f isLiquidatable account</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-4" class="level4">
+    <h4 class="anchored" data-anchor-id="example-4">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f isLiquidatable 0x1f790c60D974F5A8f88558CA90F743a71F009641
+false</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    <section id="liquidate" class="level3">
+    <h3 class="anchored" data-anchor-id="liquidate">liquidate</h3>
+    <p>Liquidates a CDP that is undercollateralized.</p>
+    <p>The liquidator must pay all the CDP debt outstanding. As a reward, the liquidator will receive the collateral that is held in the CDP. The transaction value is the payment amount.</p>
+    <p>On method execution, state is inspected to retrieve:</p>
+    <ul>
+    <li>the current CDP debt, collateral, and accrued interest amounts</li>
+    <li>the liquidation ratio from the Stabilization Contract config</li>
+    <li>the current Collateral Token price.</li>
+    </ul>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>no debt position: there is a debt to liquidate; the CDP <code>principal</code> is <code>&gt; 0</code>.</li>
+    <li>not liquidatable: the CDP is under collateralized and eligible for liquidation.</li>
+    <li>insufficient payment: the payment amount is sufficient to pay off the CDP debt (principal and accrued interest). After covering the debt the surplus remaining from the payment is <code>&gt;= 0</code>.</li>
+    </ul>
+    <p>On processing the payment:</p>
+    <ul>
+    <li>the CDP’s debt is paid off and any payment surplus is refunded to the liquidator</li>
+    <li>the CDP’s Collateral Token is transferred to the liquidator</li>
+    <li>Auton to the value of the CDP’s debt is burnt.</li>
+    </ul>
+    <section id="parameters-5" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-5">Parameters</h4>
+    <table class="caption-top table">
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>account</code></td>
+    <td><code>address</code></td>
+    <td>The CDP account address to liquidate</td>
+    </tr>
+    <tr class="even">
+    <td><code>msg.value</code></td>
+    <td><code>uint256</code></td>
+    <td>The payment amount</td>
+    </tr>
+    </tbody>
+    </table>
+    </section>
+    <section id="response-5" class="level4">
+    <h4 class="anchored" data-anchor-id="response-5">Response</h4>
+    <p>None.</p>
+    </section>
+    <section id="event-5" class="level4">
+    <h4 class="anchored" data-anchor-id="event-5">Event</h4>
+    <p>On a successful call the function emits a <code>Liquidate</code> event, logging: <code>account</code>, <code>msg.sender</code>.</p>
+    </section>
+    <section id="usage-5" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-5">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+    <pre class="aut"><code>aut contract tx --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f --value amount liquidate account</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-5" class="level4">
+    <h4 class="anchored" data-anchor-id="example-5">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+    <pre class="aut"><code>aut contract tx --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f --value 2500000000000000000 liquidate 0x1f790c60D974F5A8f88558CA90F743a71F009641 | aut tx sign - | aut tx send -</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    </section>
+    <section id="cdp-view-functions" class="level2">
+    <h2 class="anchored" data-anchor-id="cdp-view-functions">CDP View functions</h2>
+    <section id="accounts" class="level3">
+    <h3 class="anchored" data-anchor-id="accounts">accounts</h3>
+    <p>Retrieve all the accounts that have opened a CDP.</p>
+    <section id="parameters-6" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-6">Parameters</h4>
+    <p>None.</p>
+    </section>
+    <section id="response-6" class="level4">
+    <h4 class="anchored" data-anchor-id="response-6">Response</h4>
+    <p>Returns an <code>_accounts</code> array of CDP account addresses:</p>
+    <table class="caption-top table">
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>account</code></td>
+    <td><code>address</code></td>
+    <td>The CDP account address</td>
+    </tr>
+    </tbody>
+    </table>
+    </section>
+    <section id="event-6" class="level4">
+    <h4 class="anchored" data-anchor-id="event-6">Event</h4>
+    <p>None.</p>
+    </section>
+    <section id="usage-6" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-6">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f accounts</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-6" class="level4">
+    <h4 class="anchored" data-anchor-id="example-6">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f accounts
+["0x1f790c60D974F5A8f88558CA90F743a71F009641"]</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    <section id="borrowlimit" class="level3">
+    <h3 class="anchored" data-anchor-id="borrowlimit">borrowLimit</h3>
+    <p>Calculates the maximum amount of Auton that can be borrowed for the given amount of Collateral Token.</p>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>invalid parameter: the <code>price</code> and <code>mcr</code> argument values are valid, i.e.&nbsp;are not equal to <code>0</code>.</li>
+    </ul>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>The borrowing limit amount is calculated by <code>(collateral * price * targetPrice) / (mcr * SCALE_FACTOR)</code>.</p>
+    <p>Where:</p>
+    <ul>
+    <li><code>SCALE_FACTOR</code> is the Stabilisation Contract multiplier for scaling numbers to the required scale of decimal places in fixed-point integer representation. <code>SCALE_FACTOR = 10 ** SCALE</code>.</li>
+    <li><code>SCALE</code> is the Stabilisation Contract setting for decimal places in fixed-point integer representation. <code>SCALE = 18</code>.</li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    <section id="parameters-7" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-7">Parameters</h4>
+    <table class="caption-top table">
+    <colgroup>
+    <col style="width: 33%">
+    <col style="width: 33%">
+    <col style="width: 33%">
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>collateral</code></td>
+    <td><code>uint256</code></td>
+    <td>Amount of Collateral Token backing the debt</td>
+    </tr>
+    <tr class="even">
+    <td><code>price</code></td>
+    <td><code>uint256</code></td>
+    <td>The price of Collateral Token in Auton</td>
+    </tr>
+    <tr class="odd">
+    <td><code>targetPrice</code></td>
+    <td><code>uint256</code></td>
+    <td>The ACU value of 1 unit of debt</td>
+    </tr>
+    <tr class="even">
+    <td><code>mcr</code></td>
+    <td><code>uint256</code></td>
+    <td>The minimum collateralization ratio</td>
+    </tr>
+    </tbody>
+    </table>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>For the default values set for <code>targetPrice</code> and <code>mcr</code> see Reference, Genesis, <a href="../../../../reference/genesis/#configasmstabilization-object">ASM stabilization config</a>.</p>
+    <p>The current <code>price</code> value can be returned by calling <a href="../../../../reference/api/asm/stabilization/#collateralprice"><code>collateralPrice()</code></a>.</p>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="response-7" class="level4">
+    <h4 class="anchored" data-anchor-id="response-7">Response</h4>
+    <p>The function returns the maximum amount of Auton that can be borrowed as an <code>uint256</code> integer value.</p>
+    </section>
+    <section id="event-7" class="level4">
+    <h4 class="anchored" data-anchor-id="event-7">Event</h4>
+    <p>None.</p>
+    </section>
+    <section id="usage-7" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-7">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f borrowLimit collateral price targetPrice mcr</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-7" class="level4">
+    <h4 class="anchored" data-anchor-id="example-7">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f borrowLimit 4000000000000000000 9816500000000000000 1000000000000000000 2000000000000000000
+19633000000000000000</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    <section id="collateralprice" class="level3">
+    <h3 class="anchored" data-anchor-id="collateralprice">collateralPrice</h3>
+    <p>Retrieves the Collateral Token price from the Oracle Contract and converts it to Auton.</p>
+    <p>The function reverts in case the price is invalid or unavailable.</p>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>price unavailable: the Oracle Contract is providing data computed in the oracle network’s last completed voting round.</li>
+    </ul>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>To get this data the Oracle Contract function <a href="../../../../reference/api/oracle/#latestrounddata"><code>latestRoundData()</code></a> is called. This returns the latest available median price data for a currency pair symbol. If the last oracle voting round failed to successfully compute a new median price, then it will return the most recent median price for the requested symbol.</p>
+    </div>
+    </div>
+    </div>
+    <ul>
+    <li>invalid price: the <code>price</code> returned by the Oracle Contract is not equal to <code>0</code>.</li>
+    </ul>
+    <p>On method execution, state is inspected to retrieve:</p>
+    <ul>
+    <li>the latest computed Collateral Token price data and the Oracle Contract scale precision from the Oracle Contract.</li>
+    </ul>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>The function converts the Collateral Token price retrieved from the Oracle Contract to <code>SCALE</code> decimals used by the Stabilisation Contract.</p>
+    <p>Conversion is conditional upon the difference between the Stabilisation Contract and Oracle Contract scale and precision:</p>
+    <ul>
+    <li>if <code>(SCALE_FACTOR &gt; precision)</code>, then collateral price = <code>price * (SCALE_FACTOR / precision</code></li>
+    <li>else collateral price = <code>price / (precision() / SCALE_FACTOR)</code>.</li>
+    </ul>
+    <p>Where:</p>
+    <ul>
+    <li><code>SCALE_FACTOR</code> is the Stabilisation Contract multiplier for scaling numbers to the required scale of decimal places in fixed-point integer representation. <code>SCALE_FACTOR = 10 ** SCALE</code>.</li>
+    <li><code>SCALE</code> is the Stabilisation Contract setting for decimal places in fixed-point integer representation. <code>SCALE = 18</code>.</li>
+    <li><code>price</code> is the aggregated median price for Collateral Token calculated by the Oracle Contract (returned by calling <a href="../../../../reference/api/oracle/#latestrounddata"><code>latestRoundData()</code></a>).</li>
+    <li><code>precision</code> is the Oracle Contract setting for the multiplier applied to submitted data price reports before calculation of an aggregated median price for a symbol (returned by calling <a href="../../../../reference/api/oracle/#getprecision"><code>getPrecision()</code></a>).</li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    <section id="parameters-8" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-8">Parameters</h4>
+    <p>None.</p>
+    </section>
+    <section id="response-8" class="level4">
+    <h4 class="anchored" data-anchor-id="response-8">Response</h4>
+    <table class="caption-top table">
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>price</code></td>
+    <td><code>uint256</code></td>
+    <td>Price of Collateral Token</td>
+    </tr>
+    </tbody>
+    </table>
+    </section>
+    <section id="event-8" class="level4">
+    <h4 class="anchored" data-anchor-id="event-8">Event</h4>
+    <p>None.</p>
+    </section>
+    <section id="usage-8" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-8">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-17-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-1" role="tab" aria-controls="tabset-17-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-17-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-17-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f collateralPrice</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-8" class="level4">
+    <h4 class="anchored" data-anchor-id="example-8">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-18-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-1" role="tab" aria-controls="tabset-18-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-18-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-18-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f collateralPrice
+10019717700000000000</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    <section id="debtamount" class="level3">
+    <h3 class="anchored" data-anchor-id="debtamount">debtAmount</h3>
+    <p>Calculates the current debt amount outstanding for a CDP at the block height of the call.</p>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>good time: the block <code>timestamp</code> at the time of the call must be equal to or later than the CDP’s <code>timestamp</code> attribute, i.e.&nbsp;the time of the CDP’s last borrow or repayment (ensuring current and future liquidability is tested).</li>
+    </ul>
+    <section id="parameters-9" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-9">Parameters</h4>
+    <table class="caption-top table">
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>account</code></td>
+    <td><code>address</code></td>
+    <td>the CDP account address</td>
+    </tr>
+    <tr class="even">
+    <td><code>timestamp</code></td>
+    <td><code>uint</code></td>
+    <td>the timestamp to value the debt. The timestamp is provided as a <a href="../../../../glossary/#unix-time">Unix time</a> value</td>
+    </tr>
+    </tbody>
+    </table>
+    </section>
+    <section id="response-9" class="level4">
+    <h4 class="anchored" data-anchor-id="response-9">Response</h4>
+    <p>The function returns the debt amount as an <code>uint256</code> integer value.</p>
+    </section>
+    <section id="event-9" class="level4">
+    <h4 class="anchored" data-anchor-id="event-9">Event</h4>
+    <p>None.</p>
+    </section>
+    <section id="usage-9" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-9">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-19-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-19-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f debtAmount account timestamp</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-9" class="level4">
+    <h4 class="anchored" data-anchor-id="example-9">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-20-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-1" role="tab" aria-controls="tabset-20-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-20-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-20-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f debtAmount 0x1f790c60D974F5A8f88558CA90F743a71F009641 1695740525
+300012369185855391</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    <section id="interestdue" class="level3">
+    <h3 class="anchored" data-anchor-id="interestdue">interestDue</h3>
+    <p>Calculates the interest due for a given amount of debt.</p>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>invalid parameter: the <code>timeBorrow</code> argument is not greater than the <code>timeDue</code> argument value.</li>
+    </ul>
+    <section id="parameters-10" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-10">Parameters</h4>
+    <table class="caption-top table">
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>debt</code></td>
+    <td><code>uint256</code></td>
+    <td>The debt amount</td>
+    </tr>
+    <tr class="even">
+    <td><code>rate</code></td>
+    <td><code>uint256</code></td>
+    <td>The borrow interest rate</td>
+    </tr>
+    <tr class="odd">
+    <td><code>timeBorrow</code></td>
+    <td><code>uint</code></td>
+    <td>The borrow time. The timestamp is provided as a <a href="../../../../glossary/#unix-time">Unix time</a> value</td>
+    </tr>
+    <tr class="even">
+    <td><code>timeDue</code></td>
+    <td><code>uint</code></td>
+    <td>The time the interest is due. The timestamp is provided as a <a href="../../../../glossary/#unix-time">Unix time</a> value</td>
+    </tr>
+    </tbody>
+    </table>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>For the default value set for <code>rate</code> see Reference, Genesis, <a href="../../../../reference/genesis/#configasmstabilization-object">ASM stabilization config</a>.</p>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="response-10" class="level4">
+    <h4 class="anchored" data-anchor-id="response-10">Response</h4>
+    <p>The function returns the amount of interest due as an <code>uint256</code> integer value.</p>
+    </section>
+    <section id="event-10" class="level4">
+    <h4 class="anchored" data-anchor-id="event-10">Event</h4>
+    <p>None.</p>
+    </section>
+    <section id="usage-10" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-10">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-21-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-1" role="tab" aria-controls="tabset-21-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-21-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-21-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f interestDue debt rate timeBorrow timeDue</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-10" class="level4">
+    <h4 class="anchored" data-anchor-id="example-10">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-22-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-22-1" role="tab" aria-controls="tabset-22-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-22-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-22-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f interestDue 1000000000000000000 50000000000000000 1695308566 1697900566
+4118044981651418</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    <section id="minimumcollateral" class="level3">
+    <h3 class="anchored" data-anchor-id="minimumcollateral">minimumCollateral</h3>
+    <p>Calculates the minimum amount of Collateral Token that must be deposited in the CDP in order to borrow the given amount of Autons.</p>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>invalid parameter: the <code>price</code> and <code>mcr</code> argument values are valid, i.e.&nbsp;are not equal to <code>0</code>.</li>
+    </ul>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>The minimum collateral amount is calculated by <code>(principal * mcr) / price</code>.</p>
+    </div>
+    </div>
+    </div>
+    <section id="parameters-11" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-11">Parameters</h4>
+    <table class="caption-top table">
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>principal</code></td>
+    <td><code>uint256</code></td>
+    <td>Auton amount to borrow</td>
+    </tr>
+    <tr class="even">
+    <td><code>price</code></td>
+    <td><code>uint256</code></td>
+    <td>The price of Collateral Token in Auton</td>
+    </tr>
+    <tr class="odd">
+    <td><code>mcr</code></td>
+    <td><code>uint256</code></td>
+    <td>The minimum collateralization ratio</td>
+    </tr>
+    </tbody>
+    </table>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>For the default value set for <code>mcr</code> see Reference, Genesis, <a href="../../../../reference/genesis/#configasmstabilization-object">ASM stabilization config</a>.</p>
+    <p>The current <code>price</code> value can be returned by calling <a href="../../../../reference/api/asm/stabilization/#collateralprice"><code>collateralPrice()</code></a>.</p>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="response-11" class="level4">
+    <h4 class="anchored" data-anchor-id="response-11">Response</h4>
+    <p>The function returns the minimum collateral required as an <code>uint256</code> integer value.</p>
+    </section>
+    <section id="event-11" class="level4">
+    <h4 class="anchored" data-anchor-id="event-11">Event</h4>
+    <p>None.</p>
+    </section>
+    <section id="usage-11" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-11">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-23-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-23-1" role="tab" aria-controls="tabset-23-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-23-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-23-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f minimumCollateral principal price mcr</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-11" class="level4">
+    <h4 class="anchored" data-anchor-id="example-11">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-24-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-24-1" role="tab" aria-controls="tabset-24-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-24-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-24-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f minimumCollateral 1000000000000000000 9672000000000000000 2000000000000000000
+206782464846980976</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    <section id="undercollateralized" class="level3">
+    <h3 class="anchored" data-anchor-id="undercollateralized">underCollateralized</h3>
+    <p>Determines if a debt position is undercollateralized or not.</p>
+    <p>Constraint checks are applied:</p>
+    <ul>
+    <li>invalid price: the value of the <code>price</code> argument is valid, i.e.&nbsp;it is not equal to <code>0</code>.</li>
+    </ul>
+    <p>If the CDP is under collateralized, then it can be liquidated - see <a href="../../../../reference/api/asm/stabilization/#liquidate"><code>liquidate()</code></a>.</p>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-12" class="callout-12-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>If a debt position is under collateralized or not is determined by calculating <code>(collateral * price) / debt</code>. If this returns a value <code>&lt; liquidationRatio</code>, then the CDP is under collateralised and can be liquidated.</p>
+    </div>
+    </div>
+    </div>
+    <section id="parameters-12" class="level4">
+    <h4 class="anchored" data-anchor-id="parameters-12">Parameters</h4>
+    <table class="caption-top table">
+    <colgroup>
+    <col style="width: 33%">
+    <col style="width: 33%">
+    <col style="width: 33%">
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th>Field</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><code>collateral</code></td>
+    <td><code>uint256</code></td>
+    <td>Amount of Collateral Token backing the debt</td>
+    </tr>
+    <tr class="even">
+    <td><code>price</code></td>
+    <td><code>uint256</code></td>
+    <td>The price of Collateral Token in Auton</td>
+    </tr>
+    <tr class="odd">
+    <td><code>debt</code></td>
+    <td><code>uint256</code></td>
+    <td>The debt amount</td>
+    </tr>
+    <tr class="even">
+    <td><code>liquidationRatio</code></td>
+    <td><code>uint256</code></td>
+    <td>The liquidation ratio</td>
+    </tr>
+    </tbody>
+    </table>
+    <div class="callout callout-style-default callout-note callout-titled" title="Note">
+    <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
+    <div class="callout-icon-container">
+    <i class="callout-icon"></i>
+    </div>
+    <div class="callout-title-container flex-fill">
+    Note
+    </div>
+    <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+    </div>
+    <div id="callout-13" class="callout-13-contents callout-collapse collapse show">
+    <div class="callout-body-container callout-body">
+    <p>For the default value set for <code>liquidationRatio</code> see Reference, Genesis, <a href="../../../../reference/genesis/#configasmstabilization-object">ASM stabilization config</a>.</p>
+    <p>The current <code>price</code> value can be returned by calling <a href="../../../../reference/api/asm/stabilization/#collateralprice"><code>collateralPrice()</code></a>.</p>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="response-12" class="level4">
+    <h4 class="anchored" data-anchor-id="response-12">Response</h4>
+    <p>The method returns a boolean flag specifying whether the CDP is undercollateralized (true) or not (false).</p>
+    </section>
+    <section id="event-12" class="level4">
+    <h4 class="anchored" data-anchor-id="event-12">Event</h4>
+    <p>None.</p>
+    </section>
+    <section id="usage-12" class="level4">
+    <h4 class="anchored" data-anchor-id="usage-12">Usage</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-25-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-25-1" role="tab" aria-controls="tabset-25-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-25-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-25-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f underCollateralized collateral price debt liquidationRatio</code></pre>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section id="example-12" class="level4">
+    <h4 class="anchored" data-anchor-id="example-12">Example</h4>
+    <div class="tabset-margin-container"></div><div class="panel-tabset">
+    <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-26-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-26-1" role="tab" aria-controls="tabset-26-1" aria-selected="true">aut</a></li></ul>
+    <div class="tab-content">
+    <div id="tabset-26-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-26-1-tab">
+    <pre class="aut"><code>aut contract call --address 0x29b2440db4A256B0c1E6d3B4CDcaA68E2440A08f underCollateralized 206782464846980976 9672000000000000000 1000000000000000000 1800000000000000000
+false</code></pre>
+    </div>
+    </div>
+    </div>
+    
+    
+    </section>
+    </section>
+    </section>
+
+        </main> <!-- /main -->
+        <script id="quarto-html-after-body" type="application/javascript">
+        window.document.addEventListener("DOMContentLoaded", function (event) {
+          const toggleBodyColorMode = (bsSheetEl) => {
+            const mode = bsSheetEl.getAttribute("data-mode");
+            const bodyEl = window.document.querySelector("body");
+            if (mode === "dark") {
+              bodyEl.classList.add("quarto-dark");
+              bodyEl.classList.remove("quarto-light");
+            } else {
+              bodyEl.classList.add("quarto-light");
+              bodyEl.classList.remove("quarto-dark");
+            }
+          }
+          const toggleBodyColorPrimary = () => {
+            const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+            if (bsSheetEl) {
+              toggleBodyColorMode(bsSheetEl);
+            }
+          }
+          toggleBodyColorPrimary();  
+          const icon = "";
+          const anchorJS = new window.AnchorJS();
+          anchorJS.options = {
+            placement: 'right',
+            icon: icon
+          };
+          anchorJS.add('.anchored');
+          const isCodeAnnotation = (el) => {
+            for (const clz of el.classList) {
+              if (clz.startsWith('code-annotation-')) {                     
+                return true;
+              }
+            }
+            return false;
+          }
+          const onCopySuccess = function(e) {
+            // button target
+            const button = e.trigger;
+            // don't keep focus
+            button.blur();
+            // flash "checked"
+            button.classList.add('code-copy-button-checked');
+            var currentTitle = button.getAttribute("title");
+            button.setAttribute("title", "Copied!");
+            let tooltip;
+            if (window.bootstrap) {
+              button.setAttribute("data-bs-toggle", "tooltip");
+              button.setAttribute("data-bs-placement", "left");
+              button.setAttribute("data-bs-title", "Copied!");
+              tooltip = new bootstrap.Tooltip(button, 
+                { trigger: "manual", 
+                  customClass: "code-copy-button-tooltip",
+                  offset: [0, -8]});
+              tooltip.show();    
+            }
+            setTimeout(function() {
+              if (tooltip) {
+                tooltip.hide();
+                button.removeAttribute("data-bs-title");
+                button.removeAttribute("data-bs-toggle");
+                button.removeAttribute("data-bs-placement");
+              }
+              button.setAttribute("title", currentTitle);
+              button.classList.remove('code-copy-button-checked');
+            }, 1000);
+            // clear code selection
+            e.clearSelection();
+          }
+          const getTextToCopy = function(trigger) {
+              const codeEl = trigger.previousElementSibling.cloneNode(true);
+              for (const childEl of codeEl.children) {
+                if (isCodeAnnotation(childEl)) {
+                  childEl.remove();
+                }
+              }
+              return codeEl.innerText;
+          }
+          const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+            text: getTextToCopy
+          });
+          clipboard.on('success', onCopySuccess);
+          if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+            // For code content inside modals, clipBoardJS needs to be initialized with a container option
+            // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+            const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+              text: getTextToCopy,
+              container: window.document.getElementById('quarto-embedded-source-code-modal')
+            });
+            clipboardModal.on('success', onCopySuccess);
+          }
+            var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+            var mailtoRegex = new RegExp(/^mailto:/);
+              var filterRegex = new RegExp('/' + window.location.host + '/');
+            var isInternal = (href) => {
+                return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+            }
+            // Inspect non-navigation links and adorn them if external
+         	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+            for (var i=0; i<links.length; i++) {
+              const link = links[i];
+              if (!isInternal(link.href)) {
+                // undo the damage that might have been done by quarto-nav.js in the case of
+                // links that we want to consider external
+                if (link.dataset.originalHref !== undefined) {
+                  link.href = link.dataset.originalHref;
+                }
+                  // target, if specified
+                  link.setAttribute("target", "_blank");
+                  if (link.getAttribute("rel") === null) {
+                    link.setAttribute("rel", "noopener");
+                  }
+                  // default icon
+                  link.classList.add("external");
+              }
+            }
+          function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+            const config = {
+              allowHTML: true,
+              maxWidth: 500,
+              delay: 100,
+              arrow: false,
+              appendTo: function(el) {
+                  return el.parentElement;
+              },
+              interactive: true,
+              interactiveBorder: 10,
+              theme: 'quarto',
+              placement: 'bottom-start',
+            };
+            if (contentFn) {
+              config.content = contentFn;
+            }
+            if (onTriggerFn) {
+              config.onTrigger = onTriggerFn;
+            }
+            if (onUntriggerFn) {
+              config.onUntrigger = onUntriggerFn;
+            }
+            window.tippy(el, config); 
+          }
+          const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+          for (var i=0; i<noterefs.length; i++) {
+            const ref = noterefs[i];
+            tippyHover(ref, function() {
+              // use id or data attribute instead here
+              let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+              try { href = new URL(href).hash; } catch {}
+              const id = href.replace(/^#\/?/, "");
+              const note = window.document.getElementById(id);
+              if (note) {
+                return note.innerHTML;
+              } else {
+                return "";
+              }
+            });
+          }
+          const xrefs = window.document.querySelectorAll('a.quarto-xref');
+          const processXRef = (id, note) => {
+            // Strip column container classes
+            const stripColumnClz = (el) => {
+              el.classList.remove("page-full", "page-columns");
+              if (el.children) {
+                for (const child of el.children) {
+                  stripColumnClz(child);
+                }
+              }
+            }
+            stripColumnClz(note)
+            if (id === null || id.startsWith('sec-')) {
+              // Special case sections, only their first couple elements
+              const container = document.createElement("div");
+              if (note.children && note.children.length > 2) {
+                container.appendChild(note.children[0].cloneNode(true));
+                for (let i = 1; i < note.children.length; i++) {
+                  const child = note.children[i];
+                  if (child.tagName === "P" && child.innerText === "") {
+                    continue;
+                  } else {
+                    container.appendChild(child.cloneNode(true));
+                    break;
+                  }
+                }
+                if (window.Quarto?.typesetMath) {
+                  window.Quarto.typesetMath(container);
+                }
+                return container.innerHTML
+              } else {
+                if (window.Quarto?.typesetMath) {
+                  window.Quarto.typesetMath(note);
+                }
+                return note.innerHTML;
+              }
+            } else {
+              // Remove any anchor links if they are present
+              const anchorLink = note.querySelector('a.anchorjs-link');
+              if (anchorLink) {
+                anchorLink.remove();
+              }
+              if (window.Quarto?.typesetMath) {
+                window.Quarto.typesetMath(note);
+              }
+              // TODO in 1.5, we should make sure this works without a callout special case
+              if (note.classList.contains("callout")) {
+                return note.outerHTML;
+              } else {
+                return note.innerHTML;
+              }
+            }
+          }
+          for (var i=0; i<xrefs.length; i++) {
+            const xref = xrefs[i];
+            tippyHover(xref, undefined, function(instance) {
+              instance.disable();
+              let url = xref.getAttribute('href');
+              let hash = undefined; 
+              if (url.startsWith('#')) {
+                hash = url;
+              } else {
+                try { hash = new URL(url).hash; } catch {}
+              }
+              if (hash) {
+                const id = hash.replace(/^#\/?/, "");
+                const note = window.document.getElementById(id);
+                if (note !== null) {
+                  try {
+                    const html = processXRef(id, note.cloneNode(true));
+                    instance.setContent(html);
+                  } finally {
+                    instance.enable();
+                    instance.show();
+                  }
+                } else {
+                  // See if we can fetch this
+                  fetch(url.split('#')[0])
+                  .then(res => res.text())
+                  .then(html => {
+                    const parser = new DOMParser();
+                    const htmlDoc = parser.parseFromString(html, "text/html");
+                    const note = htmlDoc.getElementById(id);
+                    if (note !== null) {
+                      const html = processXRef(id, note);
+                      instance.setContent(html);
+                    } 
+                  }).finally(() => {
+                    instance.enable();
+                    instance.show();
+                  });
+                }
+              } else {
+                // See if we can fetch a full url (with no hash to target)
+                // This is a special case and we should probably do some content thinning / targeting
+                fetch(url)
+                .then(res => res.text())
+                .then(html => {
+                  const parser = new DOMParser();
+                  const htmlDoc = parser.parseFromString(html, "text/html");
+                  const note = htmlDoc.querySelector('main.content');
+                  if (note !== null) {
+                    // This should only happen for chapter cross references
+                    // (since there is no id in the URL)
+                    // remove the first header
+                    if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                      note.children[0].remove();
+                    }
+                    const html = processXRef(null, note);
+                    instance.setContent(html);
+                  } 
+                }).finally(() => {
+                  instance.enable();
+                  instance.show();
+                });
+              }
+            }, function(instance) {
+            });
+          }
+              let selectedAnnoteEl;
+              const selectorForAnnotation = ( cell, annotation) => {
+                let cellAttr = 'data-code-cell="' + cell + '"';
+                let lineAttr = 'data-code-annotation="' +  annotation + '"';
+                const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+                return selector;
+              }
+              const selectCodeLines = (annoteEl) => {
+                const doc = window.document;
+                const targetCell = annoteEl.getAttribute("data-target-cell");
+                const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+                const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+                const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+                const lineIds = lines.map((line) => {
+                  return targetCell + "-" + line;
+                })
+                let top = null;
+                let height = null;
+                let parent = null;
+                if (lineIds.length > 0) {
+                    //compute the position of the single el (top and bottom and make a div)
+                    const el = window.document.getElementById(lineIds[0]);
+                    top = el.offsetTop;
+                    height = el.offsetHeight;
+                    parent = el.parentElement.parentElement;
+                  if (lineIds.length > 1) {
+                    const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+                    const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+                    height = bottom - top;
+                  }
+                  if (top !== null && height !== null && parent !== null) {
+                    // cook up a div (if necessary) and position it 
+                    let div = window.document.getElementById("code-annotation-line-highlight");
+                    if (div === null) {
+                      div = window.document.createElement("div");
+                      div.setAttribute("id", "code-annotation-line-highlight");
+                      div.style.position = 'absolute';
+                      parent.appendChild(div);
+                    }
+                    div.style.top = top - 2 + "px";
+                    div.style.height = height + 4 + "px";
+                    div.style.left = 0;
+                    let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+                    if (gutterDiv === null) {
+                      gutterDiv = window.document.createElement("div");
+                      gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                      gutterDiv.style.position = 'absolute';
+                      const codeCell = window.document.getElementById(targetCell);
+                      const gutter = codeCell.querySelector('.code-annotation-gutter');
+                      gutter.appendChild(gutterDiv);
+                    }
+                    gutterDiv.style.top = top - 2 + "px";
+                    gutterDiv.style.height = height + 4 + "px";
+                  }
+                  selectedAnnoteEl = annoteEl;
+                }
+              };
+              const unselectCodeLines = () => {
+                const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+                elementsIds.forEach((elId) => {
+                  const div = window.document.getElementById(elId);
+                  if (div) {
+                    div.remove();
+                  }
+                });
+                selectedAnnoteEl = undefined;
+              };
+                // Handle positioning of the toggle
+            window.addEventListener(
+              "resize",
+              throttle(() => {
+                elRect = undefined;
+                if (selectedAnnoteEl) {
+                  selectCodeLines(selectedAnnoteEl);
+                }
+              }, 10)
+            );
+            function throttle(fn, ms) {
+            let throttle = false;
+            let timer;
+              return (...args) => {
+                if(!throttle) { // first call gets through
+                    fn.apply(this, args);
+                    throttle = true;
+                } else { // all the others get throttled
+                    if(timer) clearTimeout(timer); // cancel #2
+                    timer = setTimeout(() => {
+                      fn.apply(this, args);
+                      timer = throttle = false;
+                    }, ms);
+                }
+              };
+            }
+              // Attach click handler to the DT
+              const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+              for (const annoteDlNode of annoteDls) {
+                annoteDlNode.addEventListener('click', (event) => {
+                  const clickedEl = event.target;
+                  if (clickedEl !== selectedAnnoteEl) {
+                    unselectCodeLines();
+                    const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+                    if (activeEl) {
+                      activeEl.classList.remove('code-annotation-active');
+                    }
+                    selectCodeLines(clickedEl);
+                    clickedEl.classList.add('code-annotation-active');
+                  } else {
+                    // Unselect the line
+                    unselectCodeLines();
+                    clickedEl.classList.remove('code-annotation-active');
+                  }
+                });
+              }
+          const findCites = (el) => {
+            const parentEl = el.parentElement;
+            if (parentEl) {
+              const cites = parentEl.dataset.cites;
+              if (cites) {
+                return {
+                  el,
+                  cites: cites.split(' ')
+                };
+              } else {
+                return findCites(el.parentElement)
+              }
+            } else {
+              return undefined;
+            }
+          };
+          var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+          for (var i=0; i<bibliorefs.length; i++) {
+            const ref = bibliorefs[i];
+            const citeInfo = findCites(ref);
+            if (citeInfo) {
+              tippyHover(citeInfo.el, function() {
+                var popup = window.document.createElement('div');
+                citeInfo.cites.forEach(function(cite) {
+                  var citeDiv = window.document.createElement('div');
+                  citeDiv.classList.add('hanging-indent');
+                  citeDiv.classList.add('csl-entry');
+                  var biblioDiv = window.document.getElementById('ref-' + cite);
+                  if (biblioDiv) {
+                    citeDiv.innerHTML = biblioDiv.innerHTML;
+                  }
+                  popup.appendChild(citeDiv);
+                });
+                return popup.innerHTML;
+              });
+            }
+          }
+        });
+        </script>
+        </div> <!-- /content -->
+        <footer class="footer">
+          <div class="nav-footer">
+            <div class="nav-footer-left">
+              <ul class="footer-items list-unstyled">
+            <li class="nav-item compact">
+            <a class="nav-link" href="https://github.com/autonity/">
+              <i class="bi bi-github" role="img">
+        </i> 
+            </a>
+          </li>  
+            <li class="nav-item compact">
+            <a class="nav-link" href="https://twitter.com/autonity_">
+              <i class="bi bi-twitter" role="img">
+        </i> 
+            </a>
+          </li>  
+            <li class="nav-item compact">
+            <a class="nav-link" href="https://discord.com/invite/autonity">
+              <i class="bi bi-discord" role="img">
+        </i> 
+            </a>
+          </li>  
+            <li class="nav-item compact">
+            <a class="nav-link" href="https://www.youtube.com/channel/UCBMTGESIYJzXy-MfojATRqQ">
+              <i class="bi bi-youtube" role="img">
+        </i> 
+            </a>
+          </li>  
+        </ul>
+            </div>   
+            <div class="nav-footer-center">
+              &nbsp;
+            </div>
+            <div class="nav-footer-right">
+              &nbsp;
+            </div>
+          </div>
+        </footer>
+    
+
+<script>
+window.addEventListener('load', () => {
+    const anchor = location.hash;
+    if (anchor && document.querySelector(anchor)) {
+        document.querySelector(anchor).scrollIntoView();
+    }
+});
+</script>
+
+<script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
