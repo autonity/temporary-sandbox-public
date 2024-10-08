@@ -1,7 +1,7 @@
 # Piccadilly Circus Games Competition Website
 
 ## Getting started
-
+Some change
 ### Setup
 
 - Install Nix using [nix-installer](https://zero-to-nix.com/start/install).
