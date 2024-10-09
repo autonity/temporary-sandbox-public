@@ -27,9 +27,9 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId:  ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: docs-autonity-org
+          projectName: temporary-sandbox-public
           directory: ./docs
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}                                  
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - uses: mshick/add-pr-comment@v2
         with:
             message: |
